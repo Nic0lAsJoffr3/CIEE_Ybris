@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site para projeto do CIEE sobre o tema Violencia invisivel">
+    <meta name="author" content="Nicolas Joffre">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#b86de4">
+    <meta property="og:title" content="Ybris">
+    <meta property="og:description" content="Violencia invisivel">
+    <meta property="og:image" content="./src/Y.ico">
+    <meta property="og:url" content="#">
+
+    <link rel="shortcut icon" href="./src/Y.ico" type="image/x-icon">
+    <link rel="stylesheet" href="svg.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <title>Ybris - Violencia invisivel</title>
+</head>
+
+<body>
+    <header class="BarraDeTitulo">
+        <h1>Ybris</h1>
+        <ul>
+            <li>
+                <div id="erro1"></div>
+            </li>
+            <li>
+                <div id="erro2"></div>
+            </li>
+            <li>
+                <div id="erro3"></div>
+            </li>
+        </ul>
+    </header>
+    <div class="AreaDoConteudo" id="AreaDoConteudo">
+        <div class="Conteudos" id="Conteudos"></div>
+    </div>
+    <footer class="Rodape">
+        <ul class="ButtonsRede">
+            <li><button><img class="BTNPlacar"></button></li>
+            <li><button> <img class="BTNSobre"></button></li>
+            <li><button> <img class="BTNPerfil"></button></li>
+        </ul>
+    </footer>
+
+    <dialog class="reportDialog" id="CXPG">
+        <div class="caixaDePergunta">
+            <div class="Head">
+                <h2>Área de Denúncia</h2>
+                <h4>
+                    Selecione em qual categoria a mensagem abaixo se enquadra:
+                </h4>
+                <p></p>
+            </div>
+            <div class="Body">
+                <ul>
+                    <li><button onclick="MudarInput(0)">
+                            <div id="cxpg0"></div><span></span>
+                        </button></li>
+                    <li><button onclick="MudarInput(1)">
+                            <div id="cxpg1"></div><span></span>
+                        </button></li>
+                    <li><button onclick="MudarInput(2)">
+                            <div id="cxpg2"></div><span></span>
+                        </button></li>
+                    <li><button onclick="MudarInput(3)">
+                            <div id="cxpg3"></div><span></span>
+                        </button></li>
+                </ul>
+                <button class="EnviarDenuncia" id="EnviarDenuncia">Enviar Denuncia</button>
+            </div>
+        </div>
+    </dialog>
+</body>
+<script type="module" src="./main.js"></script>
+</html>
