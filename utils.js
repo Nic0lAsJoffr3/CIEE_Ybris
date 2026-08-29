@@ -59,28 +59,37 @@ export function gerarLorem() {
 
 
 export function gerarUsuario() {
-    const nomes = [
-        "joao", "pedro", "lucas", "gabriel", "matheus",
-        "rafael", "felipe", "bruno", "carlos", "gustavo",
-        "henrique", "diego", "andre", "thiago", "marcos",
-        "daniel", "vinicius", "caio", "leonardo", "miguel",
-        "arthur", "eduardo", "murilo", "luan", "rodrigo",
-        "ana", "julia", "mariana", "beatriz", "larissa",
-        "camila", "leticia", "gabriela", "isabela", "amanda",
-        "laura", "manuela", "sofia", "carolina", "fernanda"
-    ];
+const nomes = [
+    "ana", "julia", "mariana", "beatriz", "larissa",
+    "camila", "leticia", "gabriela", "isabela", "amanda",
+    "laura", "manuela", "sofia", "carolina", "fernanda",
+    "alice", "helena", "valentina", "luiza", "lorena",
+    "bianca", "sabrina", "natalia", "bruna", "vanessa",
+    "aline", "eduarda", "giovanna", "marina", "yasmim",
+    "clara", "sara", "isadora", "rafaela", "victoria",
+    "emily", "nicole", "rebecca", "catarina", "luana",
+    "esther", "cecilia", "agatha", "lavinia", "milena",
+    "melissa", "yasmin", "eloa", "valeria", "maite"
+];
 
-    const sobrenomes = [
-        "silva", "santos", "souza", "oliveira", "costa",
-        "pereira", "rocha", "lima", "alves", "ribeiro",
-        "martins", "carvalho", "gomes", "barbosa", "mendes",
-        "teixeira", "moreira", "dias", "nunes", "freitas"
-    ];
+const sobrenomes = [
+    "silva", "santos", "souza", "oliveira", "costa",
+    "pereira", "rocha", "lima", "alves", "ribeiro",
+    "martins", "carvalho", "gomes", "barbosa", "mendes",
+    "teixeira", "moreira", "dias", "nunes", "freitas",
+    "fernandes", "machado", "batista", "cardoso", "ramos",
+    "azevedo", "monteiro", "moraes", "castro", "vieira"
+];
 
-    const apelidos = [
-        "zinho", "zin", "inho", "inha", "s",
-        "h", "x", "sz", "zera", "reis"
-    ];
+const apelidos = [
+    "zinha", "zinha_", "zinhaa", "s", "h",
+    "x", "sz", "zera", "reis", "lili",
+    "ju", "mah", "bia", "lari", "cami",
+    "gabi", "isa", "mandy", "lau", "sofi",
+    "carol", "fer", "nana", "duda", "gi",
+    "mari", "nati", "bru", "vivi", "lele",
+    "bel", "isaah", "juh", "marii", "biaa"
+];
 
     const nome = nomes[Math.floor(Math.random() * nomes.length)];
     const sobrenome = sobrenomes[Math.floor(Math.random() * sobrenomes.length)];

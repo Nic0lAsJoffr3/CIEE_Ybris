@@ -2,28 +2,31 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Site para projeto do CIEE sobre o tema Violencia invisivel">
+    <meta name="description" content="Jogo educativo do CIEE sobre violência contra a mulher">
     <meta name="author" content="Nicolas Joffre">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#b86de4">
     <meta property="og:title" content="Ybris">
-    <meta property="og:description" content="Violencia invisivel">
+    <meta property="og:description" content="Jogo educativo sobre violência contra a mulher">
     <meta property="og:image" content="https://nic0lasjoffr3.github.io/CIEE_Ybris/src/Y.ico">
     <meta property="og:url" content="https://nic0lasjoffr3.github.io/CIEE_Ybris/">
-
     <link rel="shortcut icon" href="./src/Y.ico" type="image/x-icon">
     <link rel="stylesheet" href="svg.css">
     <link rel="stylesheet" href="style.css">
-
+    <script>
+        if (localStorage.getItem("Tema") === "claro") {
+            document.documentElement.classList.add("tema-claro");
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-
-    <title>Ybris - Violencia invisivel</title>
+    <title>Ybris - Violência contra a mulher</title>
 </head>
 
 <body>
@@ -42,91 +45,93 @@
             </li>
         </ul>
     </header>
+
     <div class="AreaDoConteudo" id="AreaDoConteudo">
         <div class="Conteudos" id="Conteudos"></div>
+
         <div class="Sobre hidden_area" id="Sobre">
             <div id="sobre">
-                <div id="sobre">
-                    <h1>Sobre o projeto</h1>
-                    <p>
-                        Este é um jogo educativo criado para conscientizar sobre a violência
-                        contra a mulher e ajudar a reconhecer suas diferentes formas.
-                    </p>
-                    <p>
-                        O projeto foi desenvolvido para o CIEE, como parte do Concurso
-                        Se Liga, Moçada! 2026, com o objetivo de promover informação e
-                        reflexão de forma interativa.
-                    </p>
-                    <details>
-                        <summary>Termos de Uso e Aviso de Privacidade</summary>
-                        <h2>Termos de Uso</h2>
-
-                        <p>
-                            Este jogo possui finalidade exclusivamente educativa e de
-                            conscientização. As situações apresentadas são fictícias e foram
-                            criadas para estimular a reflexão sobre diferentes formas de
-                            violência contra a mulher.
-                        </p>
-
-                        <p>
-                            A pontuação obtida no jogo tem finalidade recreativa e educativa,
-                            não representando qualquer avaliação pessoal ou profissional.
-                        </p>
-
-                        <h2>Aviso de Privacidade</h2>
-
-                        <p>
-                            Para participar do jogo, solicitamos seu nome e registramos sua
-                            pontuação. Essas informações, juntamente com um identificador único
-                            do jogador, são armazenadas no Supabase para permitir o funcionamento
-                            do placar de líderes.
-                        </p>
-
-                        <p>
-                            O identificador é utilizado para diferenciar os jogadores e manter
-                            seus registros. Não solicitamos informações como CPF, endereço ou
-                            telefone.
-                        </p>
-
-                        <p>
-                            Algumas informações também podem ser armazenadas localmente no
-                            navegador para manter o progresso e o histórico de pontuação do
-                            jogador.
-                        </p>
-
-                        <p>
-                            Ao participar do jogo, você declara estar ciente da coleta e
-                            utilização dessas informações para as finalidades descritas acima.
-                        </p>
-
-                    </details>
-                </div>
+                <h1>Sobre o projeto</h1>
+                <p>Este é um jogo educativo criado para conscientizar sobre a violência contra a mulher e ajudar a
+                    reconhecer suas diferentes formas.</p>
+                <p>O projeto foi desenvolvido para o CIEE, como parte do Concurso Se Liga, Moçada! 2026, com o objetivo
+                    de promover informação e reflexão de forma interativa.</p>
+                <details>
+                    <summary>Termos de Uso e Aviso de Privacidade</summary>
+                    <h2>Termos de Uso</h2>
+                    <p>Este jogo possui finalidade exclusivamente educativa e de conscientização. As situações
+                        apresentadas são fictícias e foram criadas para estimular a reflexão sobre diferentes formas de
+                        violência contra a mulher.</p>
+                    <p>A pontuação obtida no jogo tem finalidade recreativa e educativa, não representando qualquer
+                        avaliação pessoal ou profissional.</p>
+                    <h2>Aviso de Privacidade</h2>
+                    <p>Para participar do jogo, solicitamos seu nome e registramos sua pontuação. Essas informações,
+                        juntamente com um identificador único do jogador, são armazenadas no Supabase para permitir o
+                        funcionamento do placar de líderes.</p>
+                    <p>O identificador é utilizado para diferenciar os jogadores e manter seus registros. Não
+                        solicitamos informações como CPF, endereço ou telefone.</p>
+                    <p>Algumas informações também podem ser armazenadas localmente no navegador para manter o progresso
+                        da partida e o histórico de pontuação do jogador.</p>
+                    <p>Ao participar do jogo, você declara estar ciente da coleta e utilização dessas informações para
+                        as finalidades descritas acima.</p>
+                </details>
             </div>
-
         </div>
-        <div class="Placar hidden_area" id="Placar"></div>
+
+        <div class="Placar hidden_area" id="Placar">
+            <h1>Placar de Líderes</h1>
+            <ol class="Ranking" id="Ranking"></ol>
+        </div>
+
         <div class="Perfil hidden_area" id="Perfil">
             <img class="BTNPerfil">
             <h1 id="NomeUser"></h1>
-            <h2>Melhor pontuação: <span id="MelhorPontos">1000</span></h2>
+           <div class="Tema">
+    <h2>Tema</h2>
+    <button id="TemaEscuro" onclick="MudarTema('escuro')">Escuro</button>
+    <button id="TemaClaro" onclick="MudarTema('claro')">Claro</button>
+</div>
+            <h2>Melhor pontuação: <span id="MelhorPontos">0</span></h2>
         </div>
     </div>
+
     <footer class="Rodape">
         <ul class="ButtonsRede">
-            <li class="hidden_area" id="BTNJogo"><button onclick="mudarPagina(0)"><img class="BTNJogo"></button></li>
-            <li id="BTNPlacar"><button onclick="mudarPagina(2)"><img class="BTNPlacar"></button></li>
-            <li id="BTNSobre"><button onclick="mudarPagina(1)"> <img class="BTNSobre"></button></li>
-            <li id="BTNPerfil"><button onclick="mudarPagina(3)"> <img class="BTNPerfil"></button></li>
+            <li class="hidden_area" id="BTNJogo">
+                <button onclick="mudarPagina(0)"><img class="BTNJogo"></button>
+            </li>
+            <li id="BTNPlacar">
+                <button onclick="mudarPagina(2)"><img class="BTNPlacar"></button>
+            </li>
+            <li id="BTNSobre">
+                <button onclick="mudarPagina(1)"><img class="BTNSobre"></button>
+            </li>
+            <li id="BTNPerfil">
+                <button onclick="mudarPagina(3)"><img class="BTNPerfil"></button>
+            </li>
         </ul>
     </footer>
-
+    <dialog id="regras" class="regras">
+        <div class="regrasArea">
+            <h1>Como jogar</h1>
+            <p>Leia as postagens e identifique quando houver uma situação de violência contra a mulher.</p>
+            <ul>
+                <li>Analise cada postagem com atenção.</li>
+                <li>Escolha a categoria que melhor representa a situação.</li>
+                <li>Acertou? Você ganha pontos.</li>
+                <li>Errou? Você recebe um erro.</li>
+                <li>Ao atingir 3 erros, sua pontuação atual é zerada.</li>
+                <li>Sua melhor pontuação continua salva.</li>
+                <li>Pontuações acima de 1500 pontos podem aparecer no placar de líderes.</li>
+            </ul>
+            <button onclick="document.getElementById('regras').close()">Entendi</button>
+        </div>
+    </dialog>
     <dialog class="reportDialog" id="CXPG">
         <div class="caixaDePergunta">
             <div class="Head">
                 <h2>Área de Denúncia</h2>
-                <h4>
-                    Selecione em qual categoria a mensagem abaixo se enquadra:
-                </h4>
+                <h4>Selecione em qual categoria a mensagem abaixo se enquadra:</h4>
                 <p></p>
             </div>
             <div class="Body">
@@ -144,10 +149,11 @@
                             <div id="cxpg3"></div><span></span>
                         </button></li>
                 </ul>
-                <button class="EnviarDenuncia" id="EnviarDenuncia">Enviar Denuncia</button>
+                <button class="EnviarDenuncia" id="EnviarDenuncia">Enviar Denúncia</button>
             </div>
         </div>
     </dialog>
+
     <dialog id="feedback" class="feedback">
         <div class="feed good" id="good_feedback">
             <h1>Sua denúncia foi registrada!</h1>
@@ -156,25 +162,22 @@
         </div>
         <div class="feed bad" id="bad_feedback">
             <h1>Sua denúncia foi registrada!</h1>
-            <p>
-                Sua denúncia foi registrada e negada. Você cometeu <span>1 erro</span>.
-            </p>
+            <p>Sua denúncia foi registrada e negada. Você cometeu <span>1 erro</span>.</p>
             <button onclick="closeFeedback()">Continuar</button>
         </div>
-
     </dialog>
+
     <dialog id="login" class="login">
         <fieldset class="loginArea">
             <h1>Ybris</h1>
-
             <img class="BTNPerfil">
             <input type="text" id="nomeUsuario" placeholder="Nome de usuário" minlength="5" maxlength="30"
                 pattern="[a-zA-Z0-9_]+" autocomplete="off">
-
             <button id="btnEntrar" onclick="SalvarNome()">Entrar</button>
         </fieldset>
     </dialog>
+
+    <script type="module" src="./main.js"></script>
 </body>
-<script type="module" src="./main.js"></script>
 
 </html>

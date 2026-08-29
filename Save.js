@@ -1,30 +1,62 @@
-let Jogador = JSON.parse(localStorage.getItem("Jogador"));
+import { supabase } from "./Supabase.js";
 
-if (!Jogador) {
-    Jogador = {
-        id: crypto.randomUUID(),
-        nome: "",
-        pontos: 0,
-        melhorPontos: 0,
-        erros: 0
-    };
+let JogadorID = localStorage.getItem("JogadorID");
 
-    SalvarJogador();
+if (!JogadorID) {
+    JogadorID = crypto.randomUUID();
+    localStorage.setItem("JogadorID", JogadorID);
 }
 
-function SalvarJogador() {
+let Partida = JSON.parse(localStorage.getItem("Partida"));
 
+if (!Partida) {
+    Partida = {
+        pontos: 0,
+        erros: 0
+    };
+}
 
+let Jogador = {
+    id: JogadorID,
+    nome: "",
+    pontos: Partida.pontos ?? 0,
+    melhorPontos: 0,
+    erros: Partida.erros ?? 0
+};
+
+function SalvarPartida() {
     localStorage.setItem(
-        "Jogador",
-        JSON.stringify(Jogador)
+        "Partida",
+        JSON.stringify({
+            pontos: Jogador.pontos,
+            erros: Jogador.erros
+        })
     );
 }
 
+export async function CarregarJogador() {
+    const { data, error } = await supabase
+        .from("jogadores")
+        .select("id, nome, melhor_pontos")
+        .eq("id", JogadorID)
+        .maybeSingle();
+
+    if (error) {
+        console.error("Erro ao carregar jogador:", error);
+        return false;
+    }
+
+    if (data) {
+        Jogador.nome = data.nome;
+        Jogador.melhorPontos = data.melhor_pontos ?? 0;
+        return true;
+    }
+
+    return false;
+}
 
 export function DefinirNome(nome) {
     Jogador.nome = nome;
-    SalvarJogador();
 }
 
 export function AdicionarPontuacao(pontos) {
@@ -34,14 +66,43 @@ export function AdicionarPontuacao(pontos) {
         Jogador.melhorPontos = pontos;
     }
 
-    SalvarJogador();
+    SalvarPartida();
 }
 
 export function DefinirErros(erros) {
     Jogador.erros = erros;
-    SalvarJogador();
+    SalvarPartida();
 }
 
 export function PegarJogador() {
     return Jogador;
+}
+
+export async function SalvarJogadorSupabase() {
+    if (!Jogador.nome) {
+        return false;
+    }
+
+    const { data, error } = await supabase.functions.invoke(
+        "salvar-jogador",
+        {
+            body: {
+                id: Jogador.id,
+                nome: Jogador.nome,
+                pontos: Jogador.melhorPontos
+            }
+        }
+    );
+
+    if (error) {
+        console.error("Erro ao salvar jogador:", error);
+        return false;
+    }
+
+    if (data?.erro) {
+        console.error(data.erro);
+        return false;
+    }
+
+    return true;
 }
