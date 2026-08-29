@@ -107,7 +107,7 @@
         <div class="Placar hidden_area" id="Placar"></div>
         <div class="Perfil hidden_area" id="Perfil">
             <img class="BTNPerfil">
-            <h1>Nome User</h1>
+            <h1 id="NomeUser"></h1>
             <h2>Melhor pontuação: <span id="MelhorPontos">1000</span></h2>
         </div>
     </div>
@@ -163,10 +163,18 @@
         </div>
 
     </dialog>
-</body>
-<script>
+    <dialog id="login" class="login">
+        <fieldset class="loginArea">
+            <h1>Ybris</h1>
 
-</script>
+            <img class="BTNPerfil">
+            <input type="text" id="nomeUsuario" placeholder="Nome de usuário" minlength="5" maxlength="30"
+                pattern="[a-zA-Z0-9_]+" autocomplete="off">
+
+            <button id="btnEntrar" onclick="SalvarNome()">Entrar</button>
+        </fieldset>
+    </dialog>
+</body>
 <script type="module" src="./main.js"></script>
 
 </html>

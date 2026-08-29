@@ -21,9 +21,11 @@
     font-style: normal;
 
 }
-.hidden_area{
+
+.hidden_area {
     display: none;
 }
+
 html,
 body {
     margin: 0;
@@ -158,36 +160,46 @@ body {
     justify-items: center;
 }
 
-.Conteudos, .Sobre, .Perfil, .Placar{
+.Conteudos,
+.Sobre,
+.Perfil,
+.Placar {
     margin: 20px 0 10px 0;
     width: min(550px, 98vw);
     border: 2px solid var(--border-color);
     min-height: 90%;
 }
 
-.Sobre{
+.Sobre {
     color: var(--text-color);
     overflow: scroll;
     scrollbar-width: none;
-   
+
     background-color: var(--main-background-);
 }
-.Sobre h1{
+
+.Sobre h1 {
     text-align: center;
     font-size: min(40px, 5vw);
 }
-.Sobre details{ margin: 0 10px 20px 0;
+
+.Sobre details {
+    margin: 0 10px 20px 0;
     border: 1px solid var(--border-color);
     color: var(--main-color);
 }
-.Sobre details p, .Sobre details h2{
+
+.Sobre details p,
+.Sobre details h2 {
     color: var(--text-color);
     text-decoration: none;
 }
-.Sobre h2{
+
+.Sobre h2 {
     font-size: min(30px, 5vw);
     margin-left: 5px;
 }
+
 .Sobre p {
     text-align: justify;
     padding: 0 10px;
@@ -292,7 +304,8 @@ body {
 }
 
 .reportDialog::backdrop,
-.feedback::backdrop {
+.feedback::backdrop,
+.login::backdrop {
     background-image: linear-gradient(0deg,
             #000000dc,
             #0000006c);
@@ -396,7 +409,8 @@ body {
     border-top: 2px solid var(--border-color);
 }
 
-.feedback {
+.feedback,
+.login {
     width: min(100dvw, 500px);
     height: min(50dvh, 500px);
     border-radius: 15px;
@@ -405,7 +419,7 @@ body {
 
 }
 
-.feedback .feed{
+.feedback .feed {
     color: var(--text-color);
     height: 100%;
     overflow: hidden;
@@ -443,37 +457,100 @@ body {
     background-color: var(--main-color);
     border-radius: 10px;
 }
-.feedback .feed.bad button{
+
+.feedback .feed.bad button {
     background-color: red;
 }
 
 dialog:focus {
     outline: none;
 }
-.Placar{
+
+.Placar {
     background-color: var(--main-background-);
 }
-.Perfil{
+
+.Perfil {
     background-color: var(--main-background-);
     color: var(--text-color);
     position: relative;
 }
-.Perfil h1{
+
+.Perfil h1 {
     text-align: center;
 }
-.Perfil h2{
+
+.Perfil h2 {
     text-align: left;
     position: absolute;
     bottom: 5px;
     left: 15px;
 }
-.Perfil img{
+
+.Perfil img {
     background-color: var(--main-color);
     height: 100px;
     width: 100%;
 }
-.Perfil span{
+
+.Perfil span {
     color: var(--main-color);
+}
+
+.login {
+    color: var(--text-color);
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.login h1 {
+    grid-area: TITLE;
+}
+
+.login img {
+    grid-area: IMG;
+    background-color: var(--main-color);
+    height: 100px;
+    width: 100%;
+}
+
+.login input {
+    grid-area: NAME;
+    width: 100%;
+    font-size: 25px;
+    background-color: var(--main-background-);
+    border: 1px solid var(--border-color);
+    color: var(--main-color);
+}
+.login input::placeholder{
+    color: var(--border-color);
+}
+
+.login button {
+    width: 100%;
+    height: 40px;
+    grid-area: BUTTON;
+    align-self: flex-end;
+
+      border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 25px;
+    background-color: var(--main-color);
+    border-radius: 10px;
+}
+
+.loginArea {
+    display: grid;
+    grid-template-areas:
+        "TITLE"
+        "IMG"
+        "NAME"
+        "BUTTON";
+    grid-template-rows: 1fr 3fr 1fr  2fr;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    height: 100%;
 }
 
 @media (min-width: 1024px) {

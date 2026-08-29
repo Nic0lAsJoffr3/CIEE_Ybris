@@ -1,5 +1,5 @@
 import { Respostas } from "./Respostas.js";
-import { AdicionarPontuacao, DefinirErros, PegarJogador } from "./Save.js";
+import { AdicionarPontuacao, DefinirErros, DefinirNome, PegarJogador } from "./Save.js";
 import { ClasseErro, GerarMensagem } from "./utils.js";
 const Conteudos = document.getElementById("Conteudos");
 
@@ -12,7 +12,32 @@ let feedbackAberto = false;
 let QuantErros = 0;
 
 let Jogador = PegarJogador();
-console.log(Jogador);
+
+document.getElementById("nomeUsuario").addEventListener("input", function () {
+    this.value = this.value.replace(/\s/g, "");
+});
+if (Jogador.nome == "") {
+    document.getElementById("login").showModal();
+}
+window.SalvarNome = SalvarNome;
+function SalvarNome() {
+    const nome = document.getElementById("nomeUsuario").value.trim();
+
+    if (
+        nome.length >= 5 &&
+        nome.length <= 30 &&
+        /^[a-zA-Z0-9_]+$/.test(nome)
+    ) {
+        DefinirNome(nome);
+        document.getElementById("login").close();
+    }
+    else {
+        alert("O nome deve ter entre 5 e 30 caracteres e conter apenas letras, números ou _.");
+    }
+}
+
+document.getElementById("NomeUser").innerText = Jogador.nome;   
+
 QuantErros = Jogador?.erros;
 
 const PAGINA = {

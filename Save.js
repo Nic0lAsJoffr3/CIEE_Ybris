@@ -3,7 +3,7 @@ let Jogador = JSON.parse(localStorage.getItem("Jogador"));
 if (!Jogador) {
     Jogador = {
         id: crypto.randomUUID(),
-        nome: "None",
+        nome: "",
         pontos: 0,
         melhorPontos: 0,
         erros: 0
