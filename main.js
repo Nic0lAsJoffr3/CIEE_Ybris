@@ -78,9 +78,7 @@ function DialogAberto() {
 
 async function Inicializar() {
     CarregarTema();
-
     const carregou = await CarregarJogador();
-
     Jogador = PegarJogador();
     Inicializando = false;
 
@@ -114,11 +112,7 @@ function IniciarJogo() {
 }
 
 function MudarTema(tema) {
-    document.documentElement.classList.toggle(
-        "tema-claro",
-        tema === "claro"
-    );
-
+    document.documentElement.classList.toggle("tema-claro", tema === "claro");
     localStorage.setItem("Tema", tema);
     AtualizarBotoesTema();
 }
@@ -158,9 +152,7 @@ async function SalvarNome() {
         nome.length > 30 ||
         !/^[a-zA-Z0-9_]+$/.test(nome)
     ) {
-        alert(
-            "O nome deve ter entre 5 e 30 caracteres e conter apenas letras, números ou _."
-        );
+        alert("O nome deve ter entre 5 e 30 caracteres e conter apenas letras, números ou _.");
         return;
     }
 
@@ -173,14 +165,11 @@ async function SalvarNome() {
 
     if (!salvo) {
         botao.disabled = false;
-        alert(
-            "Não foi possível salvar seu jogador. Verifique sua conexão e tente novamente."
-        );
+        alert("Não foi possível salvar seu jogador. Verifique sua conexão e tente novamente.");
         return;
     }
 
     AtualizarInterface();
-
     LOGIN.close();
 
     if (REGRAS) {
@@ -201,10 +190,7 @@ document.getElementById("nomeUsuario")?.addEventListener("input", function () {
 function GerarConteudos() {
     let pergunta = false;
 
-    if (
-        mensagensDesdePergunta >= proximoIntervalo &&
-        Math.random() < 0.7
-    ) {
+    if (mensagensDesdePergunta >= proximoIntervalo && Math.random() < 0.7) {
         pergunta = true;
     }
 
@@ -218,8 +204,7 @@ function GerarConteudos() {
     let conteudo = "";
 
     if (pergunta) {
-        const perguntaSorteada =
-            Math.floor(Math.random() * Respostas.CXPG.length);
+        const perguntaSorteada = Math.floor(Math.random() * Respostas.CXPG.length);
 
         conteudo = GerarMensagem(
             Respostas.CXPG[perguntaSorteada].html,
@@ -237,21 +222,15 @@ function GerarConteudos() {
     Conteudos.appendChild(conteudo);
 }
 
-AreaDoConteudo.addEventListener(
-    "wheel",
-    e => {
-        e.preventDefault();
-    },
-    { passive: false }
-);
+AreaDoConteudo.addEventListener("wheel", e => {
+    e.preventDefault();
+}, { passive: false });
 
 AreaDoConteudo.addEventListener("scroll", () => {
     if (!JogoIniciado || DialogAberto()) return;
 
     const atual = AreaDoConteudo.scrollTop;
-    const maximo =
-        AreaDoConteudo.scrollHeight -
-        AreaDoConteudo.clientHeight;
+    const maximo = AreaDoConteudo.scrollHeight - AreaDoConteudo.clientHeight;
 
     if (maximo - atual < 500) {
         GerarConteudos();
@@ -265,21 +244,10 @@ AreaDoConteudo.addEventListener("scroll", () => {
 function MudarInput(i) {
     RespostaCXPG = i >= 0 && i < 4 ? i : 0;
 
-    cxpg0.classList[
-        RespostaCXPG === 0 ? "add" : "remove"
-    ]("selected");
-
-    cxpg1.classList[
-        RespostaCXPG === 1 ? "add" : "remove"
-    ]("selected");
-
-    cxpg2.classList[
-        RespostaCXPG === 2 ? "add" : "remove"
-    ]("selected");
-
-    cxpg3.classList[
-        RespostaCXPG === 3 ? "add" : "remove"
-    ]("selected");
+    cxpg0.classList[RespostaCXPG === 0 ? "add" : "remove"]("selected");
+    cxpg1.classList[RespostaCXPG === 1 ? "add" : "remove"]("selected");
+    cxpg2.classList[RespostaCXPG === 2 ? "add" : "remove"]("selected");
+    cxpg3.classList[RespostaCXPG === 3 ? "add" : "remove"]("selected");
 }
 
 window.MudarInput = MudarInput;
@@ -287,7 +255,6 @@ window.MudarInput = MudarInput;
 export function ReceberRespostaCXPG(i, dom, dialog) {
     dom.remove();
     dialog.close();
-
     MensagensCXPG.shift();
 
     const EstaCorreta =
@@ -310,7 +277,6 @@ export function ReceberRespostaCXPG(i, dom, dialog) {
         AdicionarPontuacao(PontuacaoTotal);
 
         Jogador = PegarJogador();
-
         MelhorPontuacao.innerText = Jogador.melhorPontos;
     } else {
         QuantErros++;
@@ -321,9 +287,7 @@ export function ReceberRespostaCXPG(i, dom, dialog) {
         _FEEDBACK.bad.querySelector("span").innerText =
             QuantErros +
             (QuantErros > 1 ? " erros" : " erro") +
-            (QuantErros >= 3
-                ? ", sua pontuação foi reiniciada!"
-                : ".");
+            (QuantErros >= 3 ? ", sua pontuação foi reiniciada!" : ".");
 
         if (QuantErros >= 3) {
             QuantErros = 0;
@@ -360,9 +324,7 @@ async function CarregarRanking() {
         .from("jogadores")
         .select("id,nome,melhor_pontos")
         .gte("melhor_pontos", 500)
-        .order("melhor_pontos", {
-            ascending: false
-        })
+        .order("melhor_pontos", { ascending: false })
         .limit(50);
 
     if (error) {
@@ -410,8 +372,7 @@ async function CarregarRanking() {
 
         const pontos = document.createElement("span");
         pontos.classList.add("pontos");
-        pontos.innerText =
-            Math.floor(jogador.melhor_pontos) + " pts";
+        pontos.innerText = Math.floor(jogador.melhor_pontos) + " pts";
 
         li.append(posicao, nome, pontos);
 
@@ -439,7 +400,6 @@ async function CarregarRanking() {
     });
 
     PLACAR.append(titulo, ranking);
-
     RankingCarregado = true;
 }
 
@@ -465,16 +425,10 @@ setInterval(() => {
             velocidade = 8;
         }
 
-        if (
-            AreaDoConteudo.scrollTop <
-            MensagensCXPG[0].offsetTop - 150
-        ) {
+        if (AreaDoConteudo.scrollTop < MensagensCXPG[0].offsetTop - 150) {
             AreaDoConteudo.scrollTop += velocidade;
             velocidade -= 0.05;
-        } else if (
-            AreaDoConteudo.scrollTop >
-            MensagensCXPG[0].offsetTop - 100
-        ) {
+        } else if (AreaDoConteudo.scrollTop > MensagensCXPG[0].offsetTop - 100) {
             AreaDoConteudo.scrollTop -= velocidade;
             velocidade -= 0.05;
         } else {
@@ -507,37 +461,15 @@ function Render() {
     ClasseErro(Erros[1], QuantErros >= 2);
     ClasseErro(Erros[2], QuantErros >= 3);
 
-    BTN.Jogo.classList[
-        PaginaAtual === PAGINA.Jogo ? "add" : "remove"
-    ]("hidden_area");
+    BTN.Jogo.classList[PaginaAtual === PAGINA.Jogo ? "add" : "remove"]("hidden_area");
+    BTN.Placar.classList[PaginaAtual === PAGINA.Placar ? "add" : "remove"]("hidden_area");
+    BTN.Sobre.classList[PaginaAtual === PAGINA.Sobre ? "add" : "remove"]("hidden_area");
+    BTN.Perfil.classList[PaginaAtual === PAGINA.Perfil ? "add" : "remove"]("hidden_area");
 
-    BTN.Placar.classList[
-        PaginaAtual === PAGINA.Placar ? "add" : "remove"
-    ]("hidden_area");
-
-    BTN.Sobre.classList[
-        PaginaAtual === PAGINA.Sobre ? "add" : "remove"
-    ]("hidden_area");
-
-    BTN.Perfil.classList[
-        PaginaAtual === PAGINA.Perfil ? "add" : "remove"
-    ]("hidden_area");
-
-    AREA.Jogo.classList[
-        PaginaAtual !== PAGINA.Jogo ? "add" : "remove"
-    ]("hidden_area");
-
-    AREA.Placar.classList[
-        PaginaAtual !== PAGINA.Placar ? "add" : "remove"
-    ]("hidden_area");
-
-    AREA.Sobre.classList[
-        PaginaAtual !== PAGINA.Sobre ? "add" : "remove"
-    ]("hidden_area");
-
-    AREA.Perfil.classList[
-        PaginaAtual !== PAGINA.Perfil ? "add" : "remove"
-    ]("hidden_area");
+    AREA.Jogo.classList[PaginaAtual !== PAGINA.Jogo ? "add" : "remove"]("hidden_area");
+    AREA.Placar.classList[PaginaAtual !== PAGINA.Placar ? "add" : "remove"]("hidden_area");
+    AREA.Sobre.classList[PaginaAtual !== PAGINA.Sobre ? "add" : "remove"]("hidden_area");
+    AREA.Perfil.classList[PaginaAtual !== PAGINA.Perfil ? "add" : "remove"]("hidden_area");
 
     requestAnimationFrame(Render);
 }

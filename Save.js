@@ -59,11 +59,12 @@ export function DefinirNome(nome) {
     Jogador.nome = nome;
 }
 
-export function AdicionarPontuacao(pontos) {
+export async function AdicionarPontuacao(pontos) {
     Jogador.pontos = pontos;
 
     if (pontos > Jogador.melhorPontos) {
         Jogador.melhorPontos = pontos;
+        await SalvarJogadorSupabase();
     }
 
     SalvarPartida();
@@ -106,3 +107,4 @@ export async function SalvarJogadorSupabase() {
 
     return true;
 }
+
