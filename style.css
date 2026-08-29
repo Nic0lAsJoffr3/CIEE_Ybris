@@ -28,7 +28,7 @@ body {
     padding: 0;
 
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
 
     overflow: hidden;
 
@@ -49,6 +49,7 @@ body {
 .Rodape {
     grid-area: FOOTER;
     border-top: 2px solid var(--border-color);
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
 }
 
 .ButtonsRede {
@@ -83,7 +84,17 @@ body {
     display: flex;
     border-bottom: 2px solid var(--border-color);
 }
-
+.BarraDeTitulo{
+    position: relative;
+}
+.BarraDeTitulo .Pontos{
+    color: var(--text-color);
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+    font-size: 23px;
+    text-align: right;
+}
 .BarraDeTitulo h1 {
     color: var(--main-color);
     font-family: var(--title-font);
@@ -95,6 +106,7 @@ body {
 .BarraDeTitulo ul {
     display: flex;
     list-style: none;
+    max-width: 150px;
     flex: 1;
 }
 
@@ -137,7 +149,7 @@ body {
     overflow-x: hidden;
     overflow-y: scroll;
     scrollbar-width: none;
-
+     touch-action: none; 
     justify-items: center;
 }
 
