@@ -10,8 +10,8 @@
     <meta name="theme-color" content="#b86de4">
     <meta property="og:title" content="Ybris">
     <meta property="og:description" content="Violencia invisivel">
-    <meta property="og:image" content="./src/Y.ico">
-    <meta property="og:url" content="#">
+    <meta property="og:image" content="https://nic0lasjoffr3.github.io/CIEE_Ybris/src/Y.ico">
+    <meta property="og:url" content="https://nic0lasjoffr3.github.io/CIEE_Ybris/">
 
     <link rel="shortcut icon" href="./src/Y.ico" type="image/x-icon">
     <link rel="stylesheet" href="svg.css">
@@ -44,12 +44,79 @@
     </header>
     <div class="AreaDoConteudo" id="AreaDoConteudo">
         <div class="Conteudos" id="Conteudos"></div>
+        <div class="Sobre hidden_area" id="Sobre">
+            <div id="sobre">
+                <div id="sobre">
+                    <h1>Sobre o projeto</h1>
+                    <p>
+                        Este é um jogo educativo criado para conscientizar sobre a violência
+                        contra a mulher e ajudar a reconhecer suas diferentes formas.
+                    </p>
+                    <p>
+                        O projeto foi desenvolvido para o CIEE, como parte do Concurso
+                        Se Liga, Moçada! 2026, com o objetivo de promover informação e
+                        reflexão de forma interativa.
+                    </p>
+                    <details>
+                        <summary>Termos de Uso e Aviso de Privacidade</summary>
+                        <h2>Termos de Uso</h2>
+
+                        <p>
+                            Este jogo possui finalidade exclusivamente educativa e de
+                            conscientização. As situações apresentadas são fictícias e foram
+                            criadas para estimular a reflexão sobre diferentes formas de
+                            violência contra a mulher.
+                        </p>
+
+                        <p>
+                            A pontuação obtida no jogo tem finalidade recreativa e educativa,
+                            não representando qualquer avaliação pessoal ou profissional.
+                        </p>
+
+                        <h2>Aviso de Privacidade</h2>
+
+                        <p>
+                            Para participar do jogo, solicitamos seu nome e registramos sua
+                            pontuação. Essas informações, juntamente com um identificador único
+                            do jogador, são armazenadas no Supabase para permitir o funcionamento
+                            do placar de líderes.
+                        </p>
+
+                        <p>
+                            O identificador é utilizado para diferenciar os jogadores e manter
+                            seus registros. Não solicitamos informações como CPF, endereço ou
+                            telefone.
+                        </p>
+
+                        <p>
+                            Algumas informações também podem ser armazenadas localmente no
+                            navegador para manter o progresso e o histórico de pontuação do
+                            jogador.
+                        </p>
+
+                        <p>
+                            Ao participar do jogo, você declara estar ciente da coleta e
+                            utilização dessas informações para as finalidades descritas acima.
+                        </p>
+
+                    </details>
+                </div>
+            </div>
+
+        </div>
+        <div class="Placar hidden_area" id="Placar"></div>
+        <div class="Perfil hidden_area" id="Perfil">
+            <img class="BTNPerfil">
+            <h1>Nome User</h1>
+            <h2>Melhor pontuação: <span id="MelhorPontos">1000</span></h2>
+        </div>
     </div>
     <footer class="Rodape">
         <ul class="ButtonsRede">
-            <li><button><img class="BTNPlacar"></button></li>
-            <li><button> <img class="BTNSobre"></button></li>
-            <li><button> <img class="BTNPerfil"></button></li>
+            <li class="hidden_area" id="BTNJogo"><button onclick="mudarPagina(0)"><img class="BTNJogo"></button></li>
+            <li id="BTNPlacar"><button onclick="mudarPagina(2)"><img class="BTNPlacar"></button></li>
+            <li id="BTNSobre"><button onclick="mudarPagina(1)"> <img class="BTNSobre"></button></li>
+            <li id="BTNPerfil"><button onclick="mudarPagina(3)"> <img class="BTNPerfil"></button></li>
         </ul>
     </footer>
 
@@ -81,6 +148,25 @@
             </div>
         </div>
     </dialog>
+    <dialog id="feedback" class="feedback">
+        <div class="feed good" id="good_feedback">
+            <h1>Sua denúncia foi registrada!</h1>
+            <p>Sua denúncia foi registrada e aprovada. Você recebeu <span>+100</span> pontos.</p>
+            <button onclick="closeFeedback()">Continuar</button>
+        </div>
+        <div class="feed bad" id="bad_feedback">
+            <h1>Sua denúncia foi registrada!</h1>
+            <p>
+                Sua denúncia foi registrada e negada. Você cometeu <span>1 erro</span>.
+            </p>
+            <button onclick="closeFeedback()">Continuar</button>
+        </div>
+
+    </dialog>
 </body>
+<script>
+
+</script>
 <script type="module" src="./main.js"></script>
+
 </html>

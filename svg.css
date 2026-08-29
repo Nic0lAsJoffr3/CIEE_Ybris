@@ -14,6 +14,10 @@
 }
 
 
+.BTNJogo {
+    mask: url("./src/game.svg") center / contain no-repeat;
+    -webkit-mask: url("./src/game.svg") center / contain no-repeat;
+}
 
 .BTNLike {
     mask: url("./src/like.svg") center / contain no-repeat;
