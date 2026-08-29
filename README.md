@@ -10,7 +10,7 @@ Durante o jogo, são apresentadas diferentes situações. O jogador precisa anal
 
 As respostas corretas geram pontos, enquanto os erros são contabilizados. Ao atingir **3 erros**, a pontuação da partida é zerada. O jogador pode acompanhar sua pontuação atual e sua melhor pontuação.
 
-Pontuações acima de **1500 pontos** são enviadas para um **placar de líderes global**.
+Pontuações acima de **500 pontos** são enviadas para um **placar de líderes global**.
 
 ## Tecnologias utilizadas
 

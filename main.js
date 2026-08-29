@@ -8,6 +8,7 @@ import {
     SalvarJogadorSupabase
 } from "./Save.js";
 import { ClasseErro, GerarMensagem } from "./utils.js";
+import { supabase } from "./Supabase.js";
 
 const Conteudos = document.getElementById("Conteudos");
 const AreaDoConteudo = document.getElementById("AreaDoConteudo");
@@ -16,6 +17,7 @@ const PONTOS = document.getElementById("Pontos");
 const FEEDBACK = document.getElementById("feedback");
 const LOGIN = document.getElementById("login");
 const REGRAS = document.getElementById("regras");
+const PLACAR = document.getElementById("Placar");
 
 const _FEEDBACK = {
     good: document.getElementById("good_feedback"),
@@ -66,6 +68,7 @@ let velocidade = 20;
 let PaginaAtual = PAGINA.Jogo;
 let JogoIniciado = false;
 let Inicializando = true;
+let RankingCarregado = false;
 
 let Jogador = PegarJogador();
 
@@ -74,6 +77,8 @@ function DialogAberto() {
 }
 
 async function Inicializar() {
+    CarregarTema();
+
     const carregou = await CarregarJogador();
 
     Jogador = PegarJogador();
@@ -107,6 +112,7 @@ function IniciarJogo() {
 
     requestAnimationFrame(Render);
 }
+
 function MudarTema(tema) {
     document.documentElement.classList.toggle(
         "tema-claro",
@@ -114,7 +120,6 @@ function MudarTema(tema) {
     );
 
     localStorage.setItem("Tema", tema);
-
     AtualizarBotoesTema();
 }
 
@@ -141,13 +146,6 @@ function CarregarTema() {
 
 window.MudarTema = MudarTema;
 
-CarregarTema();
-
-window.MudarTema = MudarTema;
-
-CarregarTema();
-window.SalvarNome = SalvarNome;
-
 async function SalvarNome() {
     if (Inicializando) return;
 
@@ -160,7 +158,9 @@ async function SalvarNome() {
         nome.length > 30 ||
         !/^[a-zA-Z0-9_]+$/.test(nome)
     ) {
-        alert("O nome deve ter entre 5 e 30 caracteres e conter apenas letras, números ou _.");
+        alert(
+            "O nome deve ter entre 5 e 30 caracteres e conter apenas letras, números ou _."
+        );
         return;
     }
 
@@ -173,19 +173,28 @@ async function SalvarNome() {
 
     if (!salvo) {
         botao.disabled = false;
-        alert("Não foi possível salvar seu jogador. Verifique sua conexão e tente novamente.");
+        alert(
+            "Não foi possível salvar seu jogador. Verifique sua conexão e tente novamente."
+        );
         return;
     }
 
     AtualizarInterface();
 
     LOGIN.close();
-    REGRAS.showModal();
+
+    if (REGRAS) {
+        REGRAS.showModal();
+    } else {
+        IniciarJogo();
+    }
 
     botao.disabled = false;
 }
 
-document.getElementById("nomeUsuario").addEventListener("input", function () {
+window.SalvarNome = SalvarNome;
+
+document.getElementById("nomeUsuario")?.addEventListener("input", function () {
     this.value = this.value.replace(/\s/g, "");
 });
 
@@ -228,9 +237,13 @@ function GerarConteudos() {
     Conteudos.appendChild(conteudo);
 }
 
-AreaDoConteudo.addEventListener("wheel", e => {
-    e.preventDefault();
-}, { passive: false });
+AreaDoConteudo.addEventListener(
+    "wheel",
+    e => {
+        e.preventDefault();
+    },
+    { passive: false }
+);
 
 AreaDoConteudo.addEventListener("scroll", () => {
     if (!JogoIniciado || DialogAberto()) return;
@@ -249,16 +262,27 @@ AreaDoConteudo.addEventListener("scroll", () => {
     }
 });
 
-window.MudarInput = MudarInput;
-
 function MudarInput(i) {
-    RespostaCXPG = i > 0 && i < 4 ? i : 0;
+    RespostaCXPG = i >= 0 && i < 4 ? i : 0;
 
-    cxpg0.classList[RespostaCXPG === 0 ? "add" : "remove"]("selected");
-    cxpg1.classList[RespostaCXPG === 1 ? "add" : "remove"]("selected");
-    cxpg2.classList[RespostaCXPG === 2 ? "add" : "remove"]("selected");
-    cxpg3.classList[RespostaCXPG === 3 ? "add" : "remove"]("selected");
+    cxpg0.classList[
+        RespostaCXPG === 0 ? "add" : "remove"
+    ]("selected");
+
+    cxpg1.classList[
+        RespostaCXPG === 1 ? "add" : "remove"
+    ]("selected");
+
+    cxpg2.classList[
+        RespostaCXPG === 2 ? "add" : "remove"
+    ]("selected");
+
+    cxpg3.classList[
+        RespostaCXPG === 3 ? "add" : "remove"
+    ]("selected");
 }
+
+window.MudarInput = MudarInput;
 
 export function ReceberRespostaCXPG(i, dom, dialog) {
     dom.remove();
@@ -324,6 +348,107 @@ function closeFeedback() {
     feedbackAberto = false;
 }
 
+async function CarregarRanking() {
+    if (!PLACAR) return;
+
+    PLACAR.innerHTML = `
+        <h1>Placar de líderes</h1>
+        <p class="RankingCarregando">Carregando ranking...</p>
+    `;
+
+    const { data, error } = await supabase
+        .from("jogadores")
+        .select("id,nome,melhor_pontos")
+        .gte("melhor_pontos", 500)
+        .order("melhor_pontos", {
+            ascending: false
+        })
+        .limit(50);
+
+    if (error) {
+        console.error("Erro ao carregar ranking:", error);
+
+        PLACAR.innerHTML = `
+            <h1>Placar de líderes</h1>
+            <p class="RankingErro">
+                Não foi possível carregar o placar.
+            </p>
+        `;
+
+        RankingCarregado = false;
+        return;
+    }
+
+    const jogadores = data || [];
+
+    PLACAR.innerHTML = "";
+
+    const titulo = document.createElement("h1");
+    titulo.innerText = "Placar de líderes";
+
+    const ranking = document.createElement("ol");
+    ranking.classList.add("Ranking");
+
+    if (jogadores.length === 0) {
+        const vazio = document.createElement("p");
+        vazio.innerText = "Ainda não há jogadores no ranking.";
+        PLACAR.append(titulo, vazio);
+        RankingCarregado = true;
+        return;
+    }
+
+    jogadores.forEach((jogador, indice) => {
+        const li = document.createElement("li");
+
+        const posicao = document.createElement("span");
+        posicao.classList.add("posicao");
+        posicao.innerText = indice + 1;
+
+        const nome = document.createElement("span");
+        nome.classList.add("nome");
+        nome.innerText = jogador.nome;
+
+        const pontos = document.createElement("span");
+        pontos.classList.add("pontos");
+        pontos.innerText =
+            Math.floor(jogador.melhor_pontos) + " pts";
+
+        li.append(posicao, nome, pontos);
+
+        if (indice < 10) {
+            li.classList.add("top10");
+        }
+
+        if (indice === 0) {
+            li.classList.add("primeiro");
+        }
+
+        if (indice === 1) {
+            li.classList.add("segundo");
+        }
+
+        if (indice === 2) {
+            li.classList.add("terceiro");
+        }
+
+        if (jogador.id === Jogador.id) {
+            li.classList.add("jogador");
+        }
+
+        ranking.appendChild(li);
+    });
+
+    PLACAR.append(titulo, ranking);
+
+    RankingCarregado = true;
+}
+
+async function AtualizarRanking() {
+    if (PaginaAtual === PAGINA.Placar) {
+        await CarregarRanking();
+    }
+}
+
 setInterval(() => {
     if (!JogoIniciado) return;
     if (DialogAberto()) return;
@@ -369,6 +494,11 @@ function mudarPagina(i) {
 
     if (i === PAGINA.Jogo) {
         window.location.replace("index.html");
+        return;
+    }
+
+    if (i === PAGINA.Placar) {
+        CarregarRanking();
     }
 }
 

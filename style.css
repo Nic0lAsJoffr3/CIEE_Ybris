@@ -40,6 +40,9 @@
     .hidden_area {
         display: none;
     }
+    button{
+        cursor: pointer;
+    }
 }
 
 @layer layout {
@@ -71,6 +74,8 @@
         flex: 1;
     }
 
+
+
     .ButtonsRede li button {
         height: 100%;
         width: 100%;
@@ -78,12 +83,24 @@
         border: none;
         border-left: 1px solid var(--border-color);
         border-right: 1px solid var(--border-color);
+        transition: 600ms;
     }
 
     .ButtonsRede li button img {
         background-color: var(--main-color);
         width: 75%;
         height: 75%;
+        transition: 250ms;
+    }
+
+    .ButtonsRede li:hover button {
+        background-color: var(--main-color);
+    }
+
+    .ButtonsRede li:hover button img {
+
+        background-color: white;
+
     }
 
     .BarraDeTitulo {
@@ -131,6 +148,11 @@
         position: relative;
     }
 
+    .BarraDeTitulo ul li div.erro {
+
+        border: 2px solid red;
+    }
+
     .BarraDeTitulo ul li div.erro::before {
         content: "X";
         font-family: Arial, Helvetica, sans-serif;
@@ -158,37 +180,38 @@
 }
 
 @layer components {
-.Perfil .Tema {
-    margin-top: 30px;
-    border-top: 2px solid var(--border-color);
-    padding-top: 15px;
-}
+    .Perfil .Tema {
+        margin-top: 30px;
+        border-top: 2px solid var(--border-color);
+        padding-top: 15px;
+    }
 
-.Perfil .Tema h2 {
-    position: static;
-    margin: 0 0 10px;
-}
+    .Perfil .Tema h2 {
+        position: static;
+        margin: 0 0 10px;
+    }
 
-.Perfil .Tema button {
-    width: calc(50% - 5px);
-    height: 50px;
-    border: 2px solid var(--border-color);
-    background-color: var(--secondary-background-);
-    color: var(--text-color);
-    font-size: 20px;
-    border-radius: 8px;
-    cursor: pointer;
-}
+    .Perfil .Tema button {
+        width: calc(50% - 5px);
+        height: 50px;
+        border: 2px solid var(--border-color);
+        background-color: var(--secondary-background-);
+        color: var(--text-color);
+        font-size: 20px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
 
-.Perfil .Tema button:hover {
-    border-color: var(--main-color);
-}
+    .Perfil .Tema button:hover {
+        border-color: var(--main-color);
+    }
 
-.Perfil .Tema button.selected {
-    background-color: var(--main-color);
-    border-color: var(--main-color);
-    color: white;
-}
+    .Perfil .Tema button.selected {
+        background-color: var(--main-color);
+        border-color: var(--main-color);
+        color: white;
+    }
+
     .Conteudos,
     .Sobre,
     .Perfil,
