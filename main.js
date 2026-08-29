@@ -210,7 +210,7 @@ function GerarConteudos() {
 
     if (pergunta) {
         mensagensDesdePergunta = 0;
-        proximoIntervalo = Math.floor(Math.random() * 3) + 3;
+        proximoIntervalo = Math.floor(Math.random() * 3) + 6;
     } else {
         mensagensDesdePergunta++;
     }
