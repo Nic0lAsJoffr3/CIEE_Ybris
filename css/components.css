@@ -369,7 +369,7 @@
     }
 
     .NovaPostagem img {
-        background-color: var(--border-color);
+        background-color: var(--text-color);
         border: none;
         outline: none;
         width: 100%;
