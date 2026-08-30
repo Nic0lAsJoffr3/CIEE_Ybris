@@ -14,8 +14,14 @@
     <meta property="og:image" content="https://nic0lasjoffr3.github.io/CIEE_Ybris/src/cover.ico">
     <meta property="og:url" content="https://nic0lasjoffr3.github.io/CIEE_Ybris/">
     <link rel="shortcut icon" href="https://nic0lasjoffr3.github.io/CIEE_Ybris/src/Y.ico" type="image/x-icon">
-    <link rel="stylesheet" href="svg.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/svg.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/dialogs.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/animations.css">
+
     <script>
         if (localStorage.getItem("Tema") === "claro") {
             document.documentElement.classList.add("tema-claro");
@@ -47,7 +53,11 @@
     </header>
 
     <div class="AreaDoConteudo" id="AreaDoConteudo">
-        <div class="Conteudos" id="Conteudos"></div>
+        <div class="Conteudos" id="Conteudos">
+
+
+            <button id="NovaPostagem" class="NovaPostagem" onclick="NovaPostagem()"><img class="BTNPost"></button>
+        </div>
 
         <div class="Sobre hidden_area" id="Sobre">
             <div id="sobre">
@@ -75,6 +85,9 @@
                     <p>Ao participar do jogo, você declara estar ciente da coleta e utilização dessas informações para
                         as finalidades descritas acima.</p>
                 </details>
+                <br>
+                <h5 class="creditos">Jogo desenvolvido por <a href="https://nic0lasjoffr3.github.io/portfolio-/">Nicolas
+                        Joffre</a></h5>
             </div>
         </div>
 
@@ -94,6 +107,7 @@
             <h2>Melhor pontuação: <span id="MelhorPontos">0</span></h2>
             <button class="BTNsair" onclick="LimparLocalStorage()">Sair</button>
         </div>
+
     </div>
 
     <footer class="Rodape">
@@ -179,7 +193,19 @@
         </fieldset>
     </dialog>
 
-    <script type="module" src="./main.js"></script>
+
+    <dialog id="NovoPost" class="NovoPost">
+        <h1>Nova Postagem</h1>
+        <textarea placeholder="Escreva aqui"></textarea>
+        <p>Faça uma postagem em apoio à conscientização e ao combate à violência contra a mulher. Se for aprovada, sua
+            mensagem poderá aparecer no jogo.</p>
+        <button>Enviar</button>
+    </dialog>
+
+
+
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/newpost.js"></script>
 </body>
 
 </html>

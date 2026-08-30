@@ -1,0 +1,49 @@
+@layer base, layout, components, dialogs, responsive, animations;
+
+@layer base {
+    :root {
+        --main-background-: #1f1722;
+        --secondary-background-: #150d18;
+        --border-color: #4c4152;
+        --text-color: white;
+        --main-color: #b86de4;
+        --focus-color: #24172b;
+        --normal-font: "Raleway", sans-serif;
+        --title-font: "Inter", sans-serif;
+    }
+
+
+    :root.tema-claro {
+        --main-background-: #eee8f2;
+        --secondary-background-: #e5dce9;
+        --border-color: #b9a9bd;
+        --text-color: #251d28;
+        --focus-color: #e5b4ff;
+        --main-color: #9146b5;
+    }
+
+    * {
+        box-sizing: border-box;
+        font-family: var(--normal-font);
+        font-optical-sizing: auto;
+        font-style: normal;
+        color: var(--text-color);
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    .hidden_area {
+        display: none;
+    }
+
+    button {
+        cursor: pointer;
+    }
+}

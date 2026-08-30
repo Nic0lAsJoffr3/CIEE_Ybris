@@ -1,0 +1,40 @@
+.BTNPlacar {
+    mask: url("../src/bar.svg") center / contain no-repeat;
+    -webkit-mask: url("../src/bar.svg") center / contain no-repeat;
+}
+
+.BTNPerfil,  .ConteudoHeader img {
+    mask: url("../src/user.svg") center / contain no-repeat;
+    -webkit-mask: url("../src/user.svg") center / contain no-repeat;
+}
+
+.BTNSobre {
+    mask: url("../src/book.svg") center / contain no-repeat;
+    -webkit-mask: url("../src/book.svg") center / contain no-repeat;
+}
+
+.BTNJogo {
+    mask: url("../src/game.svg") center / contain no-repeat;
+    -webkit-mask: url("../src/game.svg") center / contain no-repeat;
+}
+
+.BTNLike {
+    mask: url("../src/like.svg") center / contain no-repeat;
+    -webkit-mask: url("../src/like.svg") center / contain no-repeat;
+}
+.BTNComentario {
+    mask: url("../src/comentario.svg") center / contain no-repeat;
+    -webkit-mask: url("../src/comentario.svg") center / contain no-repeat;
+}
+.BTNEnviar {
+    mask: url("../src/send.svg") center / contain no-repeat;
+    -webkit-mask: url("../src/send.svg") center / contain no-repeat;
+}
+.BTNDenuncia {
+    mask: url("../src/report.svg") center / contain no-repeat;
+    -webkit-mask: url("../src/report.svg") center / contain no-repeat;
+}
+.BTNPost{
+    mask: url("../src/post.svg") center / contain no-repeat;
+    -webkit-mask: url("../src/post.svg") center / contain no-repeat;
+}

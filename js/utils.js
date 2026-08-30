@@ -247,7 +247,35 @@ export function gerarCorAleatoria() {
 
     return cores[Math.floor(Math.random() * cores.length)];
 }
+export function GerarMensagemEspecial(Nome, ConteudoHTML) {
+    const Conteudo = document.createElement("div");
+    Conteudo.classList.add("Conteudo", "Especial");
 
+    const Header = document.createElement("div");
+    Header.classList.add("ConteudoHeader");
+
+    const Foto = document.createElement("img");
+    const NomeUsuario = document.createElement("h3");
+    const TagEspecial = document.createElement("span");
+
+    NomeUsuario.innerText = Nome;
+    Foto.style.backgroundColor = gerarCorAleatoria();
+
+    TagEspecial.innerText = "Destaque da Comunidade";
+
+    Header.append(Foto, NomeUsuario, TagEspecial);
+
+    const ConteudoPrincipal = document.createElement("div");
+    ConteudoPrincipal.classList.add("ConteudoPrincipal");
+    ConteudoPrincipal.innerHTML = ConteudoHTML;
+
+    Conteudo.append(
+        Header,
+        ConteudoPrincipal
+    );
+
+    return Conteudo;
+}
 export function GerarMensagem(ConteudoHTML, idMensagem, hidden) {
     const Conteudo = document.createElement("div");
     Conteudo.classList.add("Conteudo");

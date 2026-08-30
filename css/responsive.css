@@ -1,0 +1,52 @@
+@layer responsive {
+    @media (max-width: 450px) {
+        .Placar {
+            padding: 10px;
+        }
+
+        .Ranking li {
+            grid-template-columns: 38px 1fr auto;
+            padding: 5px 8px;
+        }
+
+        .Ranking .nome,
+        .Ranking .pontos {
+            font-size: 15px;
+        }
+
+        .NovoPost {
+            width: 95vw;
+            min-height: 85dvh;
+        }
+
+        .feedback,
+        .login {
+            width: 94vw;
+            height: 70dvh;
+            margin: 5vh auto 0;
+        }
+
+        .NovoPost textarea {
+            height: 45dvh;
+        }
+    }
+
+
+    @media (min-width: 1024px) {
+        .ButtonsRede {
+            flex-direction: column;
+        }
+
+        .ButtonsRede li button img {
+            width: 50px;
+        }
+
+        body {
+            grid-template-rows: 125px 9fr;
+            grid-template-columns: 150px 5fr;
+            grid-template-areas:
+                "HEADER HEADER"
+                "FOOTER CENTER";
+        }
+    }
+}

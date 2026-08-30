@@ -1,0 +1,138 @@
+
+@layer layout {
+    body {
+        background-color: var(--main-background-);
+        display: grid;
+        grid-template-rows: 125px 8fr 1fr;
+        grid-template-areas:
+            "HEADER"
+            "CENTER"
+            "FOOTER";
+    }
+
+    .Rodape {
+        grid-area: FOOTER;
+        border-top: 2px solid var(--border-color);
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+
+    .ButtonsRede {
+        list-style: none;
+        display: flex;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .ButtonsRede li {
+        flex: 1;
+    }
+
+
+
+    .ButtonsRede li button {
+        height: 100%;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        border-left: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
+        transition: 600ms;
+    }
+
+    .ButtonsRede li button img {
+        background-color: var(--main-color);
+        width: 75%;
+        height: 75%;
+        transition: 250ms;
+    }
+
+    .ButtonsRede li:hover button {
+        background-color: var(--main-color);
+    }
+
+    .ButtonsRede li:hover button img {
+
+        background-color: white;
+
+    }
+
+    .BarraDeTitulo {
+        grid-area: HEADER;
+        display: flex;
+        position: relative;
+        border-bottom: 2px solid var(--border-color);
+    }
+
+    .BarraDeTitulo .Pontos {
+        color: var(--text-color);
+        position: absolute;
+        right: 5px;
+        bottom: 10px;
+        font-size: 23px;
+        text-align: right;
+    }
+
+    .BarraDeTitulo h1 {
+        color: var(--main-color);
+        font-family: var(--title-font);
+        margin: 5px 0 0 1vw;
+        font-size: clamp(40px, 6vw, 65px);
+        flex: 2;
+    }
+
+    .BarraDeTitulo ul {
+        display: flex;
+        list-style: none;
+        max-width: 150px;
+        flex: 1;
+    }
+
+    .BarraDeTitulo ul li {
+        flex: 1;
+        justify-items: center;
+        align-content: center;
+    }
+
+    .BarraDeTitulo ul li div {
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        border: 2px solid var(--border-color);
+        position: relative;
+    }
+
+    .BarraDeTitulo ul li div.erro {
+
+        border: 2px solid red;
+    }
+
+    .BarraDeTitulo ul li div.erro::before {
+        content: "X";
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 0;
+        margin: 0;
+        font-size: 35px;
+        color: red;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .AreaDoConteudo {
+        grid-area: CENTER;
+        background-color: var(--secondary-background-);
+        border-left: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
+        overflow-x: hidden;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        touch-action: none;
+    }
+
+    .Conteudos {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

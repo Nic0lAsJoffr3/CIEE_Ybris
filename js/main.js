@@ -7,7 +7,8 @@ import {
     CarregarJogador,
     SalvarJogadorSupabase
 } from "./Save.js";
-import { ClasseErro, GerarMensagem } from "./utils.js";
+import { ClasseErro, GerarMensagem, GerarMensagemEspecial } from "./utils.js";
+import { CarregarPostagens } from "./newpost.js";
 import { supabase } from "./Supabase.js";
 
 const Conteudos = document.getElementById("Conteudos");
@@ -18,6 +19,7 @@ const FEEDBACK = document.getElementById("feedback");
 const LOGIN = document.getElementById("login");
 const REGRAS = document.getElementById("regras");
 const PLACAR = document.getElementById("Placar");
+const POSTAGEM = document.getElementById("NovoPost");
 
 const _FEEDBACK = {
     good: document.getElementById("good_feedback"),
@@ -64,14 +66,13 @@ let proximoIntervalo = 0;
 let feedbackAberto = false;
 let QuantErros = 0;
 let RespostaCXPG = -1;
-let velocidade = 20;
+let velocidade = 8;
 let PaginaAtual = PAGINA.Jogo;
 let JogoIniciado = false;
 let Inicializando = true;
-let RankingCarregado = false;
-
+let Postagens = [];
 let Jogador = PegarJogador();
-
+Postagens = await CarregarPostagens();
 function DialogAberto() {
     return document.querySelector("dialog[open]") !== null;
 }
@@ -115,6 +116,11 @@ function MudarTema(tema) {
     document.documentElement.classList.toggle("tema-claro", tema === "claro");
     localStorage.setItem("Tema", tema);
     AtualizarBotoesTema();
+}
+
+window.NovaPostagem = NovaPostagem;
+function NovaPostagem() {
+    POSTAGEM.showModal();
 }
 
 function AtualizarBotoesTema() {
@@ -214,6 +220,10 @@ function GerarConteudos() {
 
         MensagensCXPG.push(conteudo);
         conteudo.classList.add("DivDePergunta");
+    } else if (Postagens.length > 0 && Math.random() < 0.05) {
+        const postagem = Postagens[Math.floor(Math.random() * Postagens.length)];
+
+        conteudo = GerarMensagemEspecial(postagem.nome, postagem.mensagem);
     } else {
         conteudo = GerarMensagem("", -1, true);
     }
@@ -421,18 +431,12 @@ setInterval(() => {
     }
 
     if (MensagensCXPG.length > 0) {
-        if (velocidade < 8) {
-            velocidade = 8;
-        }
-
         if (AreaDoConteudo.scrollTop < MensagensCXPG[0].offsetTop - 150) {
             AreaDoConteudo.scrollTop += velocidade;
-            velocidade -= 0.05;
+
         } else if (AreaDoConteudo.scrollTop > MensagensCXPG[0].offsetTop - 100) {
             AreaDoConteudo.scrollTop -= velocidade;
-            velocidade -= 0.05;
-        } else {
-            velocidade = 8;
+
         }
     } else {
         AreaDoConteudo.scrollTop += 15;

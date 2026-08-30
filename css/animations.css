@@ -1,0 +1,17 @@
+@layer animations {
+    @keyframes report {
+        0% {
+            background-color: var(--main-color);
+            transform: scale(1);
+        }
+
+        100% {
+            background-color: red;
+            transform: scale(1.15);
+        }
+    }
+}
+
+.caixaDePergunta{
+    margin-top: 25px;
+}

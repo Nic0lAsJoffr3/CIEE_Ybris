@@ -1,0 +1,342 @@
+
+@layer dialogs {
+
+    .reportDialog::backdrop,
+    .feedback::backdrop,
+    .login::backdrop,
+    .regras::backdrop,
+    .NovoPost::backdrop {
+        background-image: linear-gradient(0deg, #000000dc, #0000006c);
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .regras {
+        width: min(500px, 90vw);
+        max-height: 85vh;
+        padding: 0;
+        border: 2px solid var(--border-color);
+        border-radius: 15px;
+        background-color: var(--secondary-background-);
+        color: var(--text-color);
+        overflow: hidden;
+    }
+
+    .regrasArea {
+        padding: 20px;
+    }
+
+    .regras h1 {
+        margin: 0 0 20px;
+        color: var(--main-color);
+        font-family: var(--title-font);
+        text-align: center;
+    }
+
+    .regras p {
+        text-align: justify;
+        line-height: 1.5;
+    }
+
+    .regras ul {
+        padding-left: 25px;
+        line-height: 1.7;
+    }
+
+    .regras button {
+        width: 100%;
+        height: 45px;
+        margin-top: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        background-color: var(--main-color);
+        color: var(--text-color);
+        font-size: 20px;
+    }
+
+    .reportDialog {
+        margin: auto;
+        padding: 0;
+        border: none;
+        background: transparent;
+        overflow: hidden;
+    }
+
+    .caixaDePergunta {
+        background-image: linear-gradient(var(--main-background-) 92.5%, var(--secondary-background-));
+        width: min(750px, 90vw);
+        display: flex;
+        flex-direction: column;
+        border-radius: 25px;
+        border: 2px solid var(--border-color);
+        color: var(--text-color);
+        position: relative;
+        margin: auto;
+    }
+
+    .caixaDePergunta .Head {
+        max-height: fit-content;
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .caixaDePergunta .Body {
+        max-height: fit-content;
+        position: relative;
+    }
+
+    .caixaDePergunta h2 {
+        text-align: center;
+        font-family: var(--title-font);
+        font-size: min(7.5vw, 50px);
+        padding: 0;
+        margin: 15px 0 0;
+    }
+
+    .caixaDePergunta h4 {
+        text-align: center;
+        font-size: min(5vw, 25px);
+    }
+
+    .caixaDePergunta p {
+        text-align: justify;
+        padding: 0 10px;
+        font-size: min(4vw, 20px);
+    }
+
+    .caixaDePergunta ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 2px solid var(--border-color);
+    }
+
+    .caixaDePergunta li button {
+        display: flex;
+        width: 100%;
+        font-size: clamp(17px, 2vw, 30px);
+        background-color: transparent;
+        color: var(--text-color);
+        border: none;
+        text-align: left;
+        margin-top: 5px;
+        height: 50px;
+    }
+
+    .caixaDePergunta li span {
+        margin-left: 15px;
+    }
+
+    .caixaDePergunta li div {
+        width: 25px;
+        height: 25px;
+        border: 2px solid var(--border-color);
+        border-radius: 50%;
+    }
+
+    .caixaDePergunta li div.selected {
+        background-color: var(--main-color);
+        border-color: var(--main-color);
+    }
+
+    .caixaDePergunta .EnviarDenuncia {
+        width: max-content;
+        justify-self: center;
+        padding: 0;
+        margin: 0;
+        height: 60px;
+        width: 90%;
+        margin: 10px 5%;
+        background-color: var(--secondary-background-);
+        font-size: 30px;
+        color: var(--text-color);
+        bottom: 0;
+        border: 3px solid var(--border-color);
+       
+        border-radius: 10px;
+        
+    }
+
+    .feedback,
+    .login,
+    .NovoPost {
+        width: min(100dvw, 500px);
+        height: min(50dvh, 700px);
+        border-radius: 15px;
+        background-color: var(--secondary-background-);
+        border: 2px solid var(--border-color);
+    }
+
+    .feedback .feed {
+        color: var(--text-color);
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .feedback .feed h1 {
+        text-align: center;
+        font-size: min(30px, 5vw);
+    }
+
+    .feedback .feed p {
+        text-align: justify;
+        padding: 10px;
+        font-size: min(20px, 5vw);
+    }
+
+    .feedback .feed.good span {
+        color: var(--main-color);
+    }
+
+    .feedback .feed.bad span {
+        color: red;
+    }
+
+    .feedback .feed button {
+        position: absolute;
+        width: 80%;
+        height: clamp(50px, 15vw, 100px);
+        margin: 0 10%;
+        bottom: 15px;
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        font-size: 25px;
+        background-color: var(--main-color);
+        border-radius: 10px;
+    }
+
+    .feedback .feed.bad button {
+        background-color: red;
+    }
+
+    dialog:focus {
+        outline: none;
+    }
+
+    .login {
+        color: var(--text-color);
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .login h1 {
+        grid-area: TITLE;
+    }
+
+    .login img {
+        grid-area: IMG;
+        background-color: var(--main-color);
+        height: 100px;
+        width: 100%;
+    }
+
+    .login input {
+        grid-area: NAME;
+        width: 100%;
+        font-size: 25px;
+        background-color: var(--main-background-);
+        border: 1px solid var(--border-color);
+        color: var(--main-color);
+    }
+
+    .login input::placeholder {
+        color: var(--border-color);
+    }
+
+    .login button {
+        width: 100%;
+        height: 40px;
+        grid-area: BUTTON;
+        align-self: flex-end;
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        font-size: 25px;
+        background-color: var(--main-color);
+        border-radius: 10px;
+    }
+
+    .loginArea {
+        display: grid;
+        grid-template-areas:
+            "TITLE"
+            "IMG"
+            "NAME"
+            "BUTTON";
+        grid-template-rows: 1fr 3fr 1fr 2fr;
+        border: 1px solid var(--border-color);
+        padding: 10px;
+        height: 100%;
+    }
+
+
+   .NovoPost {
+    width: min(500px, 90vw);
+    padding: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    background-color: var(--secondary-background-);
+    color: var(--text-color);
+    overflow: hidden;
+    scrollbar-width: none;
+}
+
+.NovoPost::backdrop {
+    background-image: linear-gradient(0deg, #000000dc, #0000006c);
+}
+
+.NovoPost h1 {
+    margin: 0 0 20px;
+    color: var(--main-color);
+    font-family: var(--title-font);
+    text-align: center;
+}
+
+.NovoPost textarea {
+    width: 100%;
+    height: 180px;
+    padding: 10px;
+    resize: none;
+    background-color: var(--main-background-);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 18px;
+    outline: none;
+}
+
+.NovoPost textarea:focus {
+    border-color: var(--main-color);
+}
+
+.NovoPost textarea::placeholder {
+    color: var(--border-color);
+}
+
+.NovoPost p {
+    margin: 15px 0;
+    text-align: justify;
+    line-height: 1.4;
+}
+
+.NovoPost button {
+    width: 100%;
+    height: 45px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 20px;
+    transition: 200ms;
+}
+
+.NovoPost button:hover {
+    filter: brightness(1.15);
+    transform: scale(1.02);
+}
+
+.NovoPost button:active {
+    transform: scale(0.98);
+}
+}
