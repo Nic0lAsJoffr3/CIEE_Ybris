@@ -256,6 +256,7 @@ export function ReceberRespostaCXPG(i, dom, dialog) {
     dom.remove();
     dialog.close();
     MensagensCXPG.shift();
+    _FEEDBACK.bad.querySelector("#RespostaCorreta").innerText = Respostas.CXPG[i].respostas[Respostas.CXPG[i].respostaCorreta]
 
     const EstaCorreta =
         Respostas.CXPG[i].respostaCorreta === RespostaCXPG;
@@ -264,7 +265,7 @@ export function ReceberRespostaCXPG(i, dom, dialog) {
         Respostas.CXPG[i].acertos++;
 
         const pontosGanhos =
-            100 / Respostas.CXPG[i].acertos;
+            Math.round(100 / Respostas.CXPG[i].acertos);
 
         PontuacaoTotal += pontosGanhos;
 
@@ -288,7 +289,6 @@ export function ReceberRespostaCXPG(i, dom, dialog) {
             QuantErros +
             (QuantErros > 1 ? " erros" : " erro") +
             (QuantErros >= 3 ? ", sua pontuação foi reiniciada!" : ".");
-
         if (QuantErros >= 3) {
             QuantErros = 0;
             PontuacaoTotal = 0;

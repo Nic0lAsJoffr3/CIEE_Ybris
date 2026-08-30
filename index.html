@@ -92,6 +92,7 @@
                 <button id="TemaClaro" onclick="MudarTema('claro')">Claro</button>
             </div>
             <h2>Melhor pontuação: <span id="MelhorPontos">0</span></h2>
+            <button class="BTNsair" onclick="LimparLocalStorage()">Sair</button>
         </div>
     </div>
 
@@ -163,6 +164,7 @@
         <div class="feed bad" id="bad_feedback">
             <h1>Sua denúncia foi registrada!</h1>
             <p>Sua denúncia foi registrada e negada. Você cometeu <span>1 erro</span>.</p>
+            <p>Detectamos que a denuncia correta era: <span id="RespostaCorreta"></span></p>
             <button onclick="closeFeedback()">Continuar</button>
         </div>
     </dialog>

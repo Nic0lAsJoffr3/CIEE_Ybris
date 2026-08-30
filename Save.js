@@ -33,7 +33,12 @@ function SalvarPartida() {
         })
     );
 }
+window.LimparLocalStorage = LimparLocalStorage;
+function LimparLocalStorage() {
+    localStorage.clear();
+        window.location.replace("index.html");
 
+}
 export async function CarregarJogador() {
     const { data, error } = await supabase
         .from("jogadores")

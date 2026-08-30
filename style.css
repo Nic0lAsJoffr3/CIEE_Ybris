@@ -7,6 +7,7 @@
         --border-color: #4c4152;
         --text-color: white;
         --main-color: #b86de4;
+        --focus-color: #24172b;
         --normal-font: "Raleway", sans-serif;
         --title-font: "Inter", sans-serif;
     }
@@ -17,6 +18,7 @@
         --secondary-background-: #e5dce9;
         --border-color: #b9a9bd;
         --text-color: #251d28;
+        --focus-color: #e5b4ff;
         --main-color: #9146b5;
     }
 
@@ -40,7 +42,8 @@
     .hidden_area {
         display: none;
     }
-    button{
+
+    button {
         cursor: pointer;
     }
 }
@@ -175,11 +178,28 @@
         overflow-y: scroll;
         scrollbar-width: none;
         touch-action: none;
-        justify-items: center;
+    }
+
+    .Conteudos {
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
 @layer components {
+    .Perfil .BTNsair {
+        background-color: red;
+        color: white;
+        border: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 70px;
+        height: 25px;
+        font-size: 15px;
+        border-radius: 5px;
+    }
+
     .Perfil .Tema {
         margin-top: 30px;
         border-top: 2px solid var(--border-color);
@@ -216,7 +236,7 @@
     .Sobre,
     .Perfil,
     .Placar {
-        margin: 20px 0 10px;
+        margin: 20px auto 10px;
         width: min(550px, 98vw);
         border: 2px solid var(--border-color);
         min-height: 90%;
@@ -465,7 +485,8 @@
 
     .Ranking .jogador {
         border: 2px solid var(--main-color);
-        background-color: #24172b;
+        background-color: var(--focus-color);
+        color: var(--text-color);
     }
 
     .Ranking .jogador .posicao {
@@ -507,6 +528,8 @@
     .login::backdrop,
     .regras::backdrop {
         background-image: linear-gradient(0deg, #000000dc, #0000006c);
+        width: 100vw;
+        height: 100vh;
     }
 
     .regras {
@@ -561,24 +584,26 @@
     }
 
     .caixaDePergunta {
-        background-color: var(--main-background-);
+        background-image: linear-gradient(var(--main-background-) 92.5%, var(--secondary-background-));
         width: min(750px, 90vw);
-        height: min(750px, 90vh);
         display: flex;
         flex-direction: column;
         border-radius: 25px;
         border: 2px solid var(--border-color);
         color: var(--text-color);
         position: relative;
+        margin: auto;
     }
 
     .caixaDePergunta .Head {
-        flex: 2;
+        max-height: fit-content;
+        width: 100%;
         border-bottom: 1px solid var(--border-color);
     }
 
     .caixaDePergunta .Body {
-        flex: 2;
+        max-height: fit-content;
+        position: relative;
     }
 
     .caixaDePergunta h2 {
@@ -604,17 +629,18 @@
         list-style: none;
         margin: 0;
         padding: 0;
+        border-bottom: 2px solid var(--border-color);
     }
 
     .caixaDePergunta li button {
         display: flex;
         width: 100%;
-        font-size: clamp(20px, 2.5vw, 35px);
+        font-size: clamp(17px, 2vw, 30px);
         background-color: transparent;
         color: var(--text-color);
         border: none;
         text-align: left;
-        margin: 10px 0 0 5px;
+        margin-top: 5px;
         height: 50px;
     }
 
@@ -635,23 +661,27 @@
     }
 
     .caixaDePergunta .EnviarDenuncia {
-        width: 100%;
+        width: max-content;
+        justify-self: center;
+        padding: 0;
+        margin: 0;
         height: 60px;
+        width: 90%;
+        margin: 10px 5%;
         background-color: var(--secondary-background-);
         font-size: 30px;
         color: var(--text-color);
-        position: absolute;
-        border-bottom-left-radius: 25px;
-        border-bottom-right-radius: 25px;
         bottom: 0;
-        border: none;
-        border-top: 2px solid var(--border-color);
+        border: 3px solid var(--border-color);
+       
+        border-radius: 10px;
+        
     }
 
     .feedback,
     .login {
         width: min(100dvw, 500px);
-        height: min(50dvh, 500px);
+        height: min(50dvh, 700px);
         border-radius: 15px;
         background-color: var(--secondary-background-);
         border: 2px solid var(--border-color);
@@ -809,4 +839,8 @@
             transform: scale(1.15);
         }
     }
+}
+
+.caixaDePergunta{
+    margin-top: 25px;
 }
